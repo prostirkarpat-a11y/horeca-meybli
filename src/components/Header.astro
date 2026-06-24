@@ -1,0 +1,242 @@
+---
+const navLinks = [
+  { href: '/kataloh',      label: 'Каталог' },
+  { href: '/portfolio',    label: 'Портфоліо' },
+  { href: '/dlya-biznesu', label: 'Для бізнесу' },
+  { href: '/pro-nas',      label: 'Про нас' },
+  { href: '/kontakty',     label: 'Контакти' },
+];
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href="/" class="logo" aria-label="HoReCa Меблі — на головну">
+      <svg width="36" height="36" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect width="64" height="64" rx="10" fill="var(--color-primary)"/>
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+          font-family="Georgia, serif" font-size="26" font-weight="700" fill="#FAF7F2">HM</text>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-name">HoReCa Меблі</span>
+        <span class="logo-tagline">дерев'яні меблі на замовлення</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav-desktop" aria-label="Основна навігація">
+      <ul>
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={['nav-link', { active: pathname.startsWith(href) }]}
+              aria-current={pathname.startsWith(href) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- CTA -->
+    <a href="/kontakty#forma" class="btn btn-primary nav-cta">
+      Замовити консультацію
+    </a>
+
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Мобільна навігація">
+      <ul>
+        <li><a href="/" class:list={['mob-link', { active: pathname === '/' }]}>Головна</a></li>
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={['mob-link', { active: pathname.startsWith(href) }]}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a href="/kontakty#forma" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.5rem">
+        Замовити консультацію
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById('hamburger')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    menu.setAttribute('aria-hidden', String(!isOpen));
+    hamburger.classList.toggle('active', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close on link click
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-name {
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-dark);
+  }
+
+  .logo-tagline {
+    font-size: .6875rem;
+    color: var(--color-text-muted);
+    letter-spacing: .03em;
+  }
+
+  .nav-desktop {
+    margin-left: auto;
+  }
+
+  .nav-desktop ul {
+    display: flex;
+    gap: .25rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    padding: .4rem .75rem;
+    border-radius: var(--radius-sm);
+    font-size: .9375rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: color var(--transition), background var(--transition);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-primary);
+    background: rgba(124, 74, 30, .06);
+  }
+
+  .nav-cta {
+    flex-shrink: 0;
+    font-size: .875rem;
+    padding: .6rem 1.25rem;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    margin-left: auto;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--color-dark);
+    border-radius: 2px;
+    transition: transform var(--transition), opacity var(--transition);
+    transform-origin: center;
+  }
+
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 72px 0 0 0;
+    background: var(--color-surface);
+    padding: 1.5rem var(--gap) 2rem;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 300ms ease;
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mob-link {
+    display: block;
+    padding: .9rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    transition: color var(--transition);
+  }
+
+  .mob-link:hover,
+  .mob-link.active { color: var(--color-primary); }
+
+  @media (max-width: 900px) {
+    .nav-desktop, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu { display: block; }
+  }
+
+  @media (max-width: 400px) {
+    .logo-tagline { display: none; }
+  }
+</style>

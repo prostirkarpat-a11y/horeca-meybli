@@ -1,0 +1,492 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const categories = [
+  { id: 'stoly',  label: 'Столи',         count: 42, icon: '▭', href: '/kataloh#stoly' },
+  { id: 'stiltsi',label: 'Стільці',       count: 65, icon: '⬛', href: '/kataloh#stiltsi' },
+  { id: 'bari',   label: 'Барні стійки',  count: 18, icon: '▬', href: '/kataloh#bari' },
+  { id: 'lavky',  label: 'Дивани та лавки',count: 24, icon: '▭', href: '/kataloh#lavky' },
+  { id: 'shafy',  label: 'Шафи та стелажі',count: 31, icon: '▮', href: '/kataloh#shafy' },
+  { id: 'dekor',  label: 'Декор',         count: 20, icon: '◈', href: '/kataloh#dekor' },
+];
+
+const advantages = [
+  {
+    icon: '🪵',
+    title: 'Власне виробництво',
+    text: 'Повний цикл від вибору матеріалу до фінальної обробки на власному заводі.',
+  },
+  {
+    icon: '✏️',
+    title: 'Індивідуальний дизайн',
+    text: 'Розробляємо меблі під концепцію вашого закладу: від ескізу до готового виробу.',
+  },
+  {
+    icon: '📦',
+    title: 'Комплексні поставки',
+    text: 'Постачаємо меблі для залу, тераси, бару та кухні в одному замовленні.',
+  },
+  {
+    icon: '🔧',
+    title: 'Гарантія та сервіс',
+    text: '3 роки гарантії на всі вироби та оперативний виїзд майстра на місце.',
+  },
+];
+
+const stats = [
+  { value: '10+',  label: 'років досвіду' },
+  { value: '500+', label: 'завершених проєктів' },
+  { value: '50+',  label: 'постійних партнерів' },
+  { value: '12',   label: 'видів деревини' },
+];
+
+const portfolio = [
+  { title: 'Ресторан "Дубова зала"', city: 'Київ', type: 'Ресторан', seats: 80 },
+  { title: `Кав'ярня "Зернятко"`,    city: 'Львів', type: 'Кафе',      seats: 40 },
+  { title: 'Готель "Карпатський"',   city: 'Яремче', type: 'Готель',   seats: 120 },
+];
+---
+
+<Layout title="Головна — Дерев'яні меблі для HoReCa">
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <p class="section-label">Виробник дерев'яних меблів</p>
+      <h1 class="hero-headline">
+        Меблі, що<br />
+        <em>розповідають<br />вашу&nbsp;історію</em>
+      </h1>
+      <p class="hero-sub">
+        Створюємо дерев'яні меблі для ресторанів, кафе та готелів.
+        Від концепції до монтажу — під ключ.
+      </p>
+      <div class="hero-actions">
+        <a href="/kataloh" class="btn btn-primary">Переглянути каталог</a>
+        <a href="/kontakty#forma" class="btn btn-outline hero-btn-outline">Отримати пропозицію</a>
+      </div>
+    </div>
+    <!-- Decorative wood grain -->
+    <div class="hero-badge" aria-hidden="true">
+      <span>10+</span>
+      <span>років</span>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─── -->
+  <section class="stats-bar">
+    <div class="container stats-grid">
+      {stats.map(({ value, label }) => (
+        <div class="stat-item">
+          <strong class="stat-value">{value}</strong>
+          <span class="stat-label">{label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── CATEGORIES ─── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Асортимент</p>
+      <h2 class="section-heading">Категорії меблів</h2>
+      <div class="divider"></div>
+      <p class="section-intro">
+        Повна лінійка меблів для оснащення будь-якого типу закладу —
+        від невеликої кав'ярні до мережі ресторанів.
+      </p>
+      <div class="cat-grid">
+        {categories.map(({ label, count, href }) => (
+          <a href={href} class="cat-card">
+            <div class="cat-img img-placeholder">
+              <span class="cat-img-text">{label}</span>
+            </div>
+            <div class="cat-body">
+              <h3 class="cat-name">{label}</h3>
+              <span class="cat-count">{count} моделей</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ADVANTAGES ─── -->
+  <section class="section adv-section">
+    <div class="container">
+      <p class="section-label">Чому обирають нас</p>
+      <h2 class="section-heading">Переваги роботи з HoReCa Меблі</h2>
+      <div class="divider"></div>
+      <div class="adv-grid">
+        {advantages.map(({ icon, title, text }) => (
+          <div class="adv-card">
+            <div class="adv-icon" aria-hidden="true">{icon}</div>
+            <h3 class="adv-title">{title}</h3>
+            <p class="adv-text">{text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO PREVIEW ─── -->
+  <section class="section">
+    <div class="container">
+      <div class="port-header">
+        <div>
+          <p class="section-label">Виконані роботи</p>
+          <h2 class="section-heading">Нещодавні проєкти</h2>
+          <div class="divider"></div>
+        </div>
+        <a href="/portfolio" class="btn btn-ghost">Усі проєкти →</a>
+      </div>
+      <div class="port-grid">
+        {portfolio.map(({ title, city, type, seats }) => (
+          <article class="card port-card">
+            <div class="port-img img-placeholder">
+              <span>{type}</span>
+            </div>
+            <div class="port-body">
+              <div class="port-meta">
+                <span class="port-type">{type}</span>
+                <span class="port-city">{city}</span>
+              </div>
+              <h3 class="port-title">{title}</h3>
+              <p class="port-seats">{seats} посадкових місць</p>
+              <a href="/portfolio" class="btn btn-ghost" style="font-size:.875rem;margin-top:.5rem">
+                Детальніше →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <p class="section-label" style="color:var(--color-secondary)">Починаємо проєкт</p>
+        <h2 style="color:#fff;margin-bottom:.75rem">Готові обговорити ваш заклад?</h2>
+        <p style="color:rgba(250,247,242,.75);max-width:48ch">
+          Залиште запит — наш менеджер зв'яжеться протягом робочого дня,
+          обговорить деталі та підготує попередню комерційну пропозицію.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href="/kontakty#forma" class="btn cta-btn-primary">Залишити запит</a>
+        <a href="tel:+380001234567" class="btn cta-btn-outline">+38 (000) 123-45-67</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: clamp(520px, 70vh, 760px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--color-dark);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(28,15,5,.9) 40%, rgba(124,74,30,.55) 100%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(196,146,42,.04) 40px,
+        rgba(196,146,42,.04) 80px
+      );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-block: 6rem 4rem;
+  }
+
+  .hero-headline {
+    color: #fff;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--color-secondary);
+  }
+
+  .hero-sub {
+    font-size: 1.125rem;
+    color: rgba(250, 247, 242, .75);
+    margin-bottom: 2.25rem;
+    max-width: 48ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-outline.hero-btn-outline {
+    border-color: rgba(250,247,242,.4);
+    color: rgba(250,247,242,.9);
+  }
+
+  .btn-outline.hero-btn-outline:hover {
+    background: rgba(250,247,242,.1);
+    border-color: rgba(250,247,242,.7);
+    color: #fff;
+  }
+
+  .hero-badge {
+    position: absolute;
+    right: clamp(1.5rem, 8vw, 8rem);
+    bottom: clamp(2rem, 6vw, 5rem);
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 2px solid rgba(196,146,42,.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-secondary);
+    line-height: 1.1;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  .hero-badge span:first-child {
+    font-size: 1.875rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    background: var(--color-primary);
+    padding-block: 1.75rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: .25rem;
+    padding: .5rem;
+  }
+
+  .stat-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: .8125rem;
+    color: rgba(250, 247, 242, .75);
+    letter-spacing: .03em;
+  }
+
+  /* Categories */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 1.25rem;
+  }
+
+  .cat-card {
+    display: block;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .cat-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .cat-img {
+    height: 180px;
+    position: relative;
+  }
+
+  .cat-img-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    opacity: .6;
+  }
+
+  .cat-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .cat-name {
+    font-size: 1.0625rem;
+    margin-bottom: .25rem;
+  }
+
+  .cat-count {
+    font-size: .8125rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Advantages */
+  .adv-section {
+    background: var(--color-light);
+  }
+
+  .adv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .adv-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .adv-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .adv-title {
+    font-size: 1.0625rem;
+    margin-bottom: .6rem;
+  }
+
+  .adv-text {
+    font-size: .9rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  /* Portfolio preview */
+  .port-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .port-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .port-img {
+    height: 220px;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    opacity: .6;
+  }
+
+  .port-body { padding: 1.25rem 1.5rem 1.5rem; }
+
+  .port-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+  }
+
+  .port-type {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  .port-city {
+    font-size: .8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .port-title {
+    font-size: 1.125rem;
+    margin-bottom: .3rem;
+  }
+
+  .port-seats {
+    font-size: .875rem;
+    color: var(--color-text-muted);
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary-dark) 100%);
+    padding-block: clamp(3rem, 7vw, 5rem);
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .cta-text { flex: 1 1 320px; }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .cta-btn-primary {
+    background: var(--color-secondary);
+    color: var(--color-dark);
+    font-weight: 600;
+  }
+
+  .cta-btn-primary:hover {
+    background: #d4a030;
+    box-shadow: 0 4px 20px rgba(196,146,42,.4);
+  }
+
+  .cta-btn-outline {
+    border: 2px solid rgba(250,247,242,.3);
+    color: rgba(250,247,242,.9);
+  }
+
+  .cta-btn-outline:hover {
+    border-color: rgba(250,247,242,.7);
+    color: #fff;
+    background: rgba(250,247,242,.06);
+  }
+</style>

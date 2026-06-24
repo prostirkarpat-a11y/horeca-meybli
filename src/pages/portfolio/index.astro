@@ -1,0 +1,358 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const filters = ['Усі', 'Ресторани', 'Кафе', 'Готелі', 'Бари'];
+
+const projects = [
+  {
+    id:    1,
+    title: 'Ресторан "Дубова зала"',
+    type:  'Ресторан',
+    city:  'Київ',
+    year:  2024,
+    seats: 80,
+    desc:  'Комплексне оснащення двох залів та літньої тераси. Дерево: дуб масив. Авторський дизайн.',
+    tags:  ['Столи', 'Стільці', 'Барна стійка'],
+  },
+  {
+    id:    2,
+    title: 'Кав\'ярня "Зернятко"',
+    type:  'Кафе',
+    city:  'Львів',
+    year:  2024,
+    seats: 40,
+    desc:  'Стильний мінімалізм із елементами лофту. Дерево: береза та метал.',
+    tags:  ['Стільці', 'Барні стільці', 'Полиці'],
+  },
+  {
+    id:    3,
+    title: 'Готель "Карпатський"',
+    type:  'Готель',
+    city:  'Яремче',
+    year:  2023,
+    seats: 120,
+    desc:  'Меблі для ресторану, лобі та 40 номерів у єдиному альпійському стилі.',
+    tags:  ['Столи', 'Ліжка', 'Тумби', 'Дзеркала'],
+  },
+  {
+    id:    4,
+    title: 'Бар "Whiskey Corner"',
+    type:  'Бари',
+    city:  'Одеса',
+    year:  2023,
+    seats: 55,
+    desc:  'Барна стійка 8 м із дуба та металу, барні стільці та декоративні елементи.',
+    tags:  ['Барна стійка', 'Барні стільці'],
+  },
+  {
+    id:    5,
+    title: 'Мережа кафе "Hora"',
+    type:  'Кафе',
+    city:  'Харків / Дніпро',
+    year:  2023,
+    seats: 200,
+    desc:  'Уніфіковані меблі для 5 закладів мережі. Масштабована модульна система.',
+    tags:  ['Столи', 'Стільці', 'Лавки'],
+  },
+  {
+    id:    6,
+    title: 'Ресторан "Terracotta"',
+    type:  'Ресторан',
+    city:  'Київ',
+    year:  2022,
+    seats: 100,
+    desc:  'Середземноморський стиль: горіх, тераса з тиком, декоративні перегородки.',
+    tags:  ['Столи', 'Стільці', 'Перегородки'],
+  },
+];
+---
+
+<Layout
+  title="Портфоліо"
+  description="Портфоліо проєктів HoReCa Меблі — ресторани, кафе, готелі, бари. Понад 500 реалізованих об'єктів по всій Україні."
+>
+  <!-- Page hero -->
+  <div class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Хлібні крихти">
+        <a href="/">Головна</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Портфоліо</span>
+      </nav>
+      <h1>Портфоліо</h1>
+      <p>Реалізовані проєкти — від концепції до готового інтер'єру</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Filters -->
+      <div class="port-filters" role="group" aria-label="Фільтр за типом закладу">
+        {filters.map((f, i) => (
+          <button class:list={['filter-btn', { active: i === 0 }]}>
+            {f}
+          </button>
+        ))}
+      </div>
+
+      <!-- Stats row -->
+      <div class="port-stats">
+        <div class="port-stat">
+          <strong>500+</strong>
+          <span>проєктів</span>
+        </div>
+        <div class="port-stat">
+          <strong>50+</strong>
+          <span>міст України</span>
+        </div>
+        <div class="port-stat">
+          <strong>10</strong>
+          <span>країн експорту</span>
+        </div>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="projects-grid">
+        {projects.map(({ id, title, type, city, year, seats, desc, tags }) => (
+          <article class="card project-card">
+            <div class="project-img img-placeholder">
+              <span class="project-type-badge">{type}</span>
+              <span class="project-img-text">{title}</span>
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-location">📍 {city}</span>
+                <span class="project-year">{year}</span>
+              </div>
+              <h3 class="project-title">{title}</h3>
+              <p class="project-seats">{seats} посадкових місць</p>
+              <p class="project-desc">{desc}</p>
+              <div class="project-tags">
+                {tags.map(tag => <span class="tag">{tag}</span>)}
+              </div>
+              <a href={`/portfolio/${id}`} class="btn btn-ghost project-link">
+                Детальніше про проєкт →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Load more -->
+      <div class="load-more">
+        <button class="btn btn-outline">Завантажити ще проєкти</button>
+        <p>Показано 6 з 127 проєктів</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="port-cta">
+    <div class="container port-cta-inner">
+      <h2>Готові реалізувати ваш проєкт?</h2>
+      <p>Розкажіть нам про концепцію вашого закладу — ми підберемо оптимальне рішення та підготуємо кошторис.</p>
+      <div class="cta-btns">
+        <a href="/kontakty#forma" class="btn btn-primary">Замовити консультацію</a>
+        <a href="/kataloh" class="btn btn-outline">Перейти до каталогу</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    background: linear-gradient(to right, var(--color-light), var(--color-border));
+    padding-block: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero h1 { margin-bottom: .5rem; }
+  .page-hero p { color: var(--color-text-muted); }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .875rem; color: var(--color-text-muted); margin-bottom: 1rem;
+  }
+  .breadcrumb a { color: var(--color-primary); }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  /* Filter bar */
+  .port-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: .5rem 1.25rem;
+    border-radius: 999px;
+    font-size: .875rem;
+    font-weight: 500;
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .filter-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+
+  /* Stats row */
+  .port-stats {
+    display: flex;
+    gap: 3rem;
+    padding: 1.5rem 2rem;
+    background: var(--color-light);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .port-stat {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+  }
+
+  .port-stat strong {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .port-stat span {
+    font-size: .8125rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Projects grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-img {
+    height: 240px;
+    position: relative;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .project-type-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(28, 15, 5, .65);
+    color: var(--color-secondary);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .3rem .7rem;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+  }
+
+  .project-img-text {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-primary);
+    opacity: .45;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+
+  .project-body { padding: 1.25rem 1.5rem 1.5rem; }
+
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+  }
+
+  .project-location { font-size: .8125rem; color: var(--color-text-muted); }
+  .project-year { font-size: .8125rem; font-weight: 600; color: var(--color-secondary); }
+
+  .project-title { font-size: 1.125rem; margin-bottom: .25rem; }
+
+  .project-seats {
+    font-size: .8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: .75rem;
+  }
+
+  .project-desc {
+    font-size: .9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .375rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    font-size: .75rem;
+    padding: .25rem .6rem;
+    border-radius: 4px;
+    background: var(--color-light);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  .project-link { font-size: .875rem; }
+
+  /* Load more */
+  .load-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .load-more p { font-size: .875rem; color: var(--color-text-muted); }
+
+  /* CTA */
+  .port-cta {
+    background: var(--color-light);
+    border-top: 1px solid var(--color-border);
+    padding-block: 4rem;
+  }
+
+  .port-cta-inner {
+    text-align: center;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .port-cta-inner h2 { margin-bottom: .75rem; }
+  .port-cta-inner p { color: var(--color-text-muted); margin-bottom: 2rem; margin-inline: auto; }
+
+  .cta-btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

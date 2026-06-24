@@ -1,0 +1,336 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const benefits = [
+  {
+    icon: '🤝',
+    title: 'Персональний менеджер',
+    desc: 'Ведемо кожен проєкт від першого контакту до здачі об\'єкту. Один менеджер — повна відповідальність.',
+  },
+  {
+    icon: '💼',
+    title: 'Оптові умови',
+    desc: 'Від 10 одиниць — знижки від 15%. Від 50 одиниць — індивідуальні умови та пріоритетне виробництво.',
+  },
+  {
+    icon: '🎨',
+    title: 'Брендування',
+    desc: 'Меблі з логотипом, фірмовими кольорами та унікальними формами — повна кастомізація під ваш бренд.',
+  },
+  {
+    icon: '🚚',
+    title: 'Доставка по Україні',
+    desc: 'Власний транспорт для Києва та регіонів. Організовуємо доставку до будь-якого міста України.',
+  },
+  {
+    icon: '🔧',
+    title: 'Монтаж під ключ',
+    desc: 'Команда монтажників з\'являється в узгоджений час і виконує збирання та розстановку меблів.',
+  },
+  {
+    icon: '📄',
+    title: 'Документообіг для юросіб',
+    desc: 'Повний пакет первинних документів, робота з ПДВ, договір на всі форми власності.',
+  },
+];
+
+const steps = [
+  { num: '01', title: 'Заявка',       desc: 'Залишаєте запит — зв\'язуємося протягом робочого дня.' },
+  { num: '02', title: 'ТЗ та ескіз',  desc: 'Обговорюємо концепцію, замір приміщення, ескіз безкоштовно.' },
+  { num: '03', title: 'КП та договір',desc: 'Узгоджуємо специфікацію, ціну та строки. Підписуємо договір.' },
+  { num: '04', title: 'Виробництво',  desc: 'Повний цикл на власному заводі. Звітуємо на кожному етапі.' },
+  { num: '05', title: 'Доставка',     desc: 'Власна логістика або перевізник за вашим вибором.' },
+  { num: '06', title: 'Монтаж і акт', desc: 'Збирання, розстановка, підписання акту приймання-передачі.' },
+];
+
+const partnerTypes = [
+  {
+    title: 'Ресторатори',
+    icon: '🍽️',
+    desc: 'Розробляємо концепцію меблів під формат закладу — від фаст-фуду до fine dining.',
+    href: '/kontakty#forma',
+  },
+  {
+    title: 'Готельний бізнес',
+    icon: '🏨',
+    desc: 'Комплексне оснащення: лобі, ресторан, номери, конференц-зали.',
+    href: '/kontakty#forma',
+  },
+  {
+    title: 'Дизайнери та архітектори',
+    icon: '📐',
+    desc: 'Реалізуємо авторські проєкти будь-якої складності. Комісія за рекомендацію.',
+    href: '/kontakty#forma',
+  },
+  {
+    title: 'Мережеві проєкти',
+    icon: '🏪',
+    desc: 'Тиражування меблів для мережі — єдиний стандарт якості у всіх точках.',
+    href: '/kontakty#forma',
+  },
+];
+---
+
+<Layout
+  title="Для бізнесу"
+  description="HoReCa Меблі — корпоративні умови для ресторанів, готелів, кафе. Оптові ціни, персональний менеджер, монтаж під ключ."
+>
+  <!-- Page hero -->
+  <div class="biz-hero">
+    <div class="container biz-hero-inner">
+      <div class="biz-hero-text">
+        <nav class="breadcrumb" aria-label="Хлібні крихти">
+          <a href="/">Головна</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Для бізнесу</span>
+        </nav>
+        <p class="section-label">Корпоративним клієнтам</p>
+        <h1>Комплексне оснащення&nbsp;закладів</h1>
+        <p class="biz-hero-desc">
+          Від підбору концепції до монтажу меблів — повний супровід вашого
+          проєкту. Власне виробництво, прозорі ціни, гарантований результат.
+        </p>
+        <div class="hero-actions">
+          <a href="/kontakty#forma" class="btn btn-primary">Обговорити проєкт</a>
+          <a href="/portfolio" class="btn btn-outline biz-outline">Переглянути кейси</a>
+        </div>
+      </div>
+      <div class="biz-hero-card">
+        <div class="biz-quote">
+          <p>"Замовили меблі для 3 закладів. Все вчасно, якість чудова, менеджер завжди на зв'язку."</p>
+          <footer>
+            <strong>Олена В.</strong>
+            <span>Власниця мережі кав'ярень, Київ</span>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Умови співпраці</p>
+      <h2 class="section-heading">Що отримує бізнес-партнер</h2>
+      <div class="divider"></div>
+      <div class="benefits-grid">
+        {benefits.map(({ icon, title, desc }) => (
+          <div class="benefit-card">
+            <span class="benefit-icon" aria-hidden="true">{icon}</span>
+            <h3 class="benefit-title">{title}</h3>
+            <p class="benefit-desc">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section process-section">
+    <div class="container">
+      <p class="section-label">Як ми працюємо</p>
+      <h2 class="section-heading">Етапи співпраці</h2>
+      <div class="divider"></div>
+      <ol class="steps-list">
+        {steps.map(({ num, title, desc }) => (
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">{num}</span>
+            <div class="step-content">
+              <h3 class="step-title">{title}</h3>
+              <p class="step-desc">{desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Partner types -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Хто звертається до нас</p>
+      <h2 class="section-heading">Типи партнерів</h2>
+      <div class="divider"></div>
+      <div class="partner-grid">
+        {partnerTypes.map(({ title, icon, desc, href }) => (
+          <a href={href} class="partner-card card">
+            <div class="partner-icon" aria-hidden="true">{icon}</div>
+            <h3 class="partner-title">{title}</h3>
+            <p class="partner-desc">{desc}</p>
+            <span class="partner-link">Обговорити умови →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="biz-cta">
+    <div class="container biz-cta-inner">
+      <h2>Розрахуйте вартість вашого проєкту</h2>
+      <p>
+        Надішліть нам план приміщення або технічне завдання —
+        підготуємо попередній кошторис безкоштовно протягом 24 годин.
+      </p>
+      <a href="/kontakty#forma" class="btn btn-primary biz-cta-btn">Надіслати запит</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .biz-hero {
+    background: linear-gradient(135deg, var(--color-light) 0%, #efe3d4 100%);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 4rem 3.5rem;
+  }
+
+  .biz-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .biz-hero-inner { grid-template-columns: 1fr; }
+    .biz-hero-card { display: none; }
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .875rem; color: var(--color-text-muted); margin-bottom: 1rem;
+  }
+  .breadcrumb a { color: var(--color-primary); }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .biz-hero-desc {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    max-width: 52ch;
+  }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+
+  .btn-outline.biz-outline { color: var(--color-primary); border-color: var(--color-primary); }
+
+  .biz-hero-card { max-width: 300px; }
+
+  .biz-quote {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--color-secondary);
+  }
+
+  .biz-quote p {
+    font-style: italic;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    font-size: .9375rem;
+    line-height: 1.65;
+  }
+
+  .biz-quote footer {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+  }
+
+  .biz-quote strong { font-size: .9375rem; color: var(--color-dark); }
+  .biz-quote span { font-size: .8125rem; color: var(--color-text-muted); }
+
+  /* Benefits */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    padding: 1.75rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .benefit-card:hover {
+    border-color: var(--color-secondary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .benefit-icon { font-size: 2rem; display: block; margin-bottom: .875rem; }
+  .benefit-title { font-size: 1.0625rem; margin-bottom: .5rem; }
+  .benefit-desc { font-size: .9rem; color: var(--color-text-muted); line-height: 1.65; }
+
+  /* Process */
+  .process-section { background: var(--color-light); }
+
+  .steps-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1.5rem;
+    counter-reset: none;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-border);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 54px;
+  }
+
+  .step-title { font-size: 1.0625rem; margin-bottom: .35rem; }
+  .step-desc { font-size: .9rem; color: var(--color-text-muted); line-height: 1.6; }
+
+  /* Partner types */
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 1.25rem;
+  }
+
+  .partner-card {
+    display: block;
+    padding: 2rem 1.75rem;
+    text-decoration: none;
+  }
+
+  .partner-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+  .partner-title { font-size: 1.0625rem; margin-bottom: .5rem; color: var(--color-dark); }
+  .partner-desc { font-size: .9rem; color: var(--color-text-muted); margin-bottom: 1.25rem; line-height: 1.6; }
+  .partner-link { font-size: .875rem; font-weight: 600; color: var(--color-primary); }
+
+  /* Closing CTA */
+  .biz-cta {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    padding-block: clamp(3rem, 7vw, 5rem);
+    text-align: center;
+  }
+
+  .biz-cta-inner { max-width: 640px; margin-inline: auto; }
+  .biz-cta-inner h2 { color: #fff; margin-bottom: .875rem; }
+  .biz-cta-inner p { color: rgba(250,247,242,.75); margin-bottom: 2rem; margin-inline: auto; }
+
+  .biz-cta-btn {
+    background: var(--color-secondary);
+    color: var(--color-dark);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: .875rem 2rem;
+  }
+
+  .biz-cta-btn:hover { background: #d4a030; }
+</style>
