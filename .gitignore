@@ -11,6 +11,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Python tooling
+__pycache__/
+*.pyc
+
 # environment variables
 .env
 .env.*
@@ -21,3 +25,11 @@ pnpm-debug.log*
 
 # Astro
 .astro/
+
+# downloaded source photos
+ardudana_photos/*
+!ardudana_photos/.gitkeep
+
+# manually prepared product photos
+manual_import/*
+!manual_import/.gitkeep
